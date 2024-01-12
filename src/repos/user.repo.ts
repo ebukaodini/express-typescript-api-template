@@ -17,7 +17,7 @@ export class UserRepo {
     }
   }
 
-  static findOne(id: number) {
+  static findOne(id: string) {
     try {
       return `This action returns a #${id} user`;
     } catch (error: any) {
@@ -25,7 +25,7 @@ export class UserRepo {
     }
   }
 
-  static update(id: number, _user: any) {
+  static update(id: string, _user: any) {
     try {
       return `This action updates a #${id} user`;
     } catch (error: any) {
@@ -33,7 +33,7 @@ export class UserRepo {
     }
   }
 
-  static remove(id: number) {
+  static remove(id: string) {
     try {
       return `This action removes a #${id} user`;
     } catch (error: any) {

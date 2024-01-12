@@ -18,10 +18,6 @@ router.patch(
   validator(UserDto, ValidationGroup.UPDATE),
   UserController.updateUser
 );
-router.delete(
-  "/users/:userId",
-  validator(UserDto, ValidationGroup.CREATE),
-  UserController.removeUser
-);
+router.delete("/users/:userId", UserController.removeUser);
 
 export default router;

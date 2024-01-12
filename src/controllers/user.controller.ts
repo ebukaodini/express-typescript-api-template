@@ -23,7 +23,7 @@ export class UserController {
 
   static findOneUser(req: Request, res: Response) {
     try {
-      return res.success(UserRepo.findOne(Number(req.params.userId)));
+      return res.success(UserRepo.findOne(req.params.userId));
     } catch (error: any) {
       throw error;
     }
@@ -32,7 +32,7 @@ export class UserController {
   static updateUser(req: Request, res: Response) {
     try {
       const data = UserDto.fromJson(req.body);
-      return res.success(UserRepo.update(Number(req.params.userId), data));
+      return res.success(UserRepo.update(req.params.userId, data));
     } catch (error: any) {
       throw error;
     }
@@ -40,7 +40,7 @@ export class UserController {
 
   static removeUser(req: Request, res: Response) {
     try {
-      return res.success(UserRepo.remove(Number(req.params.userId)));
+      return res.success(UserRepo.remove(req.params.userId));
     } catch (error: any) {
       throw error;
     }
