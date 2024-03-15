@@ -5,7 +5,7 @@ import IResponse from "../interfaces/IResponse";
 /**
  * Use the custom response middleware to extend express response object.
  */
-export const response = (req: Request, res: Response, next: NextFunction) => {
+export const response = (_req: Request, res: Response, next: NextFunction) => {
   /**
    * Returns a success response
    * @param message response message
@@ -20,25 +20,25 @@ export const response = (req: Request, res: Response, next: NextFunction) => {
   ): Response<IResponse> {
     return this.status(statusCode).json({
       message: message,
-      ...(data !== undefined && { data: data }),
+      ...{ data },
     });
   };
 
   /**
    * Returns a error response
    * @param message response message
-   * @param error response error data
+   * @param errors response error data
    * @param statusCode response status code. Defaults to 400
    * @returns Response
    */
   res.error = function (
     message: string,
-    error: any,
+    errors: Error,
     statusCode: number = StatusCode.ClientErrorBadRequest
   ): Response<IResponse> {
     return this.status(statusCode).json({
       message: message,
-      ...(error !== undefined && { error: error }),
+      ...{ errors },
     });
   };
 
