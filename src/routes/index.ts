@@ -1,6 +1,6 @@
 import express from "express";
 import { displayRoutes } from "../utils/route.utils";
-import userRoutes from "./users.routes";
+import userRoutes from "./user.route";
 
 const indexRoute = express.Router();
 indexRoute.get("/", (_req, res, _next) => {

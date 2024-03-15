@@ -3,7 +3,6 @@
     "target": "ES2017",
     "module": "commonjs",
     "declaration": true,
-    // "baseUrl": "./src",
     "outDir": "./build",
     "removeComments": true,
     "strict": false,

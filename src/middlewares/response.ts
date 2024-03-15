@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { StatusCode } from "status-code-enum";
+import { HttpStatusCode } from "axios";
 import IResponse from "../interfaces/IResponse";
 
 /**
@@ -16,7 +16,7 @@ export const response = (_req: Request, res: Response, next: NextFunction) => {
   res.success = function (
     message: string,
     data: any,
-    statusCode: number = StatusCode.SuccessOK
+    statusCode: number = HttpStatusCode.Ok
   ): Response<IResponse> {
     return this.status(statusCode).json({
       message: message,
@@ -33,8 +33,8 @@ export const response = (_req: Request, res: Response, next: NextFunction) => {
    */
   res.error = function (
     message: string,
-    errors: Error,
-    statusCode: number = StatusCode.ClientErrorBadRequest
+    errors: any,
+    statusCode: number = HttpStatusCode.BadRequest
   ): Response<IResponse> {
     return this.status(statusCode).json({
       message: message,

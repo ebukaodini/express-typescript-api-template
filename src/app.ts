@@ -1,3 +1,4 @@
+import "reflect-metadata";
 import express, { Application } from "express";
 import path from "path";
 import cors from "cors";
@@ -5,7 +6,7 @@ import logger from "morgan";
 import helmet from "helmet";
 import * as dotenv from "dotenv";
 import { v1Routes } from "./routes";
-import { errorHandler, notFound, response } from "./middlewares";
+import { errorHandler, notFound, request, response } from "./middlewares";
 
 // configure environment
 process.env.NODE_ENV! === "test"
@@ -16,6 +17,7 @@ process.env.NODE_ENV! === "test"
 const app: Application = express();
 
 // integrate middlewares
+app.use(request);
 app.use(response);
 app.use(logger("dev"));
 app.use(helmet());

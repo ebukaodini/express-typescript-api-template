@@ -1,41 +1,42 @@
 import { UserDto } from "../dtos/user.dto";
+import { User } from "../entities/user.entity";
 
 export class UserRepo {
-  static async create(user: UserDto) {
+  static async create(user: UserDto): Promise<User> {
     try {
-      return `This action created a user - ${user.name}`;
+      return {id: "", name: ""};
     } catch (error: any) {
       throw error;
     }
   }
 
-  static findAll() {
+  static async findAll(): Promise<User[]> {
     try {
-      return `This action returns all users`;
+      return [{id: "", name: ""}];
     } catch (error: any) {
       throw error;
     }
   }
 
-  static findOne(id: string) {
+  static async findOne(userId: User["id"]): Promise<User> {
     try {
-      return `This action returns a #${id} user`;
+      return {id: "", name: ""};
     } catch (error: any) {
       throw error;
     }
   }
 
-  static update(id: string, _user: any) {
+  static async update(userId: User["id"], user: UserDto): Promise<User> {
     try {
-      return `This action updates a #${id} user`;
+      return {id: "", name: ""};
     } catch (error: any) {
       throw error;
     }
   }
 
-  static remove(id: string) {
+  static async delete(userId: User["id"]): Promise<User> {
     try {
-      return `This action removes a #${id} user`;
+      return {id: "", name: ""};
     } catch (error: any) {
       throw error;
     }

@@ -1,48 +1,53 @@
 import { Request, Response } from "express";
 import { UserRepo } from "../repos/user.repo";
 import { UserDto } from "../dtos/user.dto";
+import IResponse from "../interfaces/IResponse";
 
 export class UserController {
-  static async createUser(req: Request, res: Response) {
+  static async createUser(req: Request, res: Response): Promise<IResponse> {
     try {
       const data = UserDto.fromJson(req.body);
       const user = await UserRepo.create(data);
-      return res.success("User created.", user);
+      return res.success("User created.", UserDto.toJson(user));
     } catch (error: any) {
-      throw error;
+      res.error("User not created!", error.message);
     }
   }
 
-  static findAllUsers(req: Request, res: Response) {
+  static async findAllUsers(req: Request, res: Response): Promise<IResponse> {
     try {
-      return res.success(UserRepo.findAll());
+      const users = await UserRepo.findAll(); 
+      return res.success("All users.", UserDto.toArray(users));
     } catch (error: any) {
-      throw error;
+      res.error("Users not found!", error.message);
     }
   }
 
-  static findOneUser(req: Request, res: Response) {
+  static async findOneUser(req: Request, res: Response): Promise<IResponse> {
     try {
-      return res.success(UserRepo.findOne(req.params.userId));
+      const user = await UserRepo.findOne(req.params.userId);
+      return res.success("User details.", UserDto.toJson(user));
     } catch (error: any) {
-      throw error;
+      res.error("User not found!", error.message);
     }
   }
 
-  static updateUser(req: Request, res: Response) {
+  static async updateUser(req: Request, res: Response): Promise<IResponse> {
     try {
       const data = UserDto.fromJson(req.body);
-      return res.success(UserRepo.update(req.params.userId, data));
+      const user = await UserRepo.update(req.params.userId, data);
+      return res.success("User updated.", UserDto.toJson(user));
     } catch (error: any) {
-      throw error;
+      res.error("User not updated!", error.message);
     }
   }
 
-  static removeUser(req: Request, res: Response) {
+  static async deleteUser(req: Request, res: Response): Promise<IResponse> {
     try {
-      return res.success(UserRepo.remove(req.params.userId));
+      const user = await UserRepo.delete(req.params.userId);
+      return res.success("User deleted.", UserDto.toJson(user));
     } catch (error: any) {
-      throw error;
+      res.error("User not deleted!", error.message);
     }
   }
 }

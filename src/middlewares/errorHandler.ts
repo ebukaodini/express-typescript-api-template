@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { HttpError } from "http-errors";
-import StatusCode from "status-code-enum";
+import { HttpStatusCode } from "axios";
 import ErrorResponse from "../interfaces/IError";
 
 export function errorHandler(
@@ -13,7 +13,7 @@ export function errorHandler(
 
   return res.status(err.statusCode).json({
     message:
-      err.statusCode === StatusCode.ServerErrorInternal
+      err.statusCode === HttpStatusCode.InternalServerError
         ? "Server Error! Please try again."
         : err.message,
     ...(process.env.NODE_ENV !== "production" && {
