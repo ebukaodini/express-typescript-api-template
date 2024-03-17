@@ -1,5 +1,5 @@
 {
-  "name": "template-api",
+  "name": "sample-api",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -22,7 +22,7 @@
     "reflect-metadata": "^0.2.1"
   },
   "devDependencies": {
-    "@ebukaodini/scaffoldjs": "^0.1.8",
+    "@ebukaodini/scaffoldjs": "latest",
     "@types/cors": "^2.8.17",
     "@types/express": "^4.17.21",
     "@types/morgan": "^1.9.9",

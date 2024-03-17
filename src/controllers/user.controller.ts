@@ -10,7 +10,7 @@ export class UserController {
       const user = await UserRepo.create(data);
       return res.success("User created.", UserDto.toJson(user));
     } catch (error: any) {
-      res.error("User not created!", error.message);
+      return res.error("User not created!", error.message);
     }
   }
 
@@ -19,7 +19,7 @@ export class UserController {
       const users = await UserRepo.findAll(); 
       return res.success("All users.", UserDto.toArray(users));
     } catch (error: any) {
-      res.error("Users not found!", error.message);
+      return res.error("Users not found!", error.message);
     }
   }
 
@@ -28,7 +28,7 @@ export class UserController {
       const user = await UserRepo.findOne(req.params.userId);
       return res.success("User details.", UserDto.toJson(user));
     } catch (error: any) {
-      res.error("User not found!", error.message);
+      return res.error("User not found!", error.message);
     }
   }
 
@@ -38,7 +38,7 @@ export class UserController {
       const user = await UserRepo.update(req.params.userId, data);
       return res.success("User updated.", UserDto.toJson(user));
     } catch (error: any) {
-      res.error("User not updated!", error.message);
+      return res.error("User not updated!", error.message);
     }
   }
 
@@ -47,7 +47,7 @@ export class UserController {
       const user = await UserRepo.delete(req.params.userId);
       return res.success("User deleted.", UserDto.toJson(user));
     } catch (error: any) {
-      res.error("User not deleted!", error.message);
+      return res.error("User not deleted!", error.message);
     }
   }
 }

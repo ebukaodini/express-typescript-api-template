@@ -1,3 +1,3 @@
-# express-typescript-api-template
+# sample-api
 
 an express typescript api template
