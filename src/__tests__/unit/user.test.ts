@@ -1,15 +1,13 @@
 import { faker } from "@faker-js/faker";
 import { beforeEach, describe, expect, test } from "@jest/globals";
-import { Context, createDbMock, MockContext } from "../prisma.config";
+import { createDbMock, MockContext } from "../config";
 import { UserRepo } from "../../repos/user.repo";
 import { Role } from "@prisma/client";
 
 let mockDb: MockContext["prisma"];
-let db: Context;
 
 beforeEach(() => {
   mockDb = createDbMock().prisma;
-  db = mockDb as unknown as Context;
 });
 
 const randomUser = () => {
