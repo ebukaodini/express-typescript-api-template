@@ -16,5 +16,6 @@
     "noFallthroughCasesInSwitch": false
   },
   "include": ["./*.js", "src/**/*.ts"],
-  "exclude": ["build"]
+  "exclude": ["build"],
+  "types": ["jest"]
 }

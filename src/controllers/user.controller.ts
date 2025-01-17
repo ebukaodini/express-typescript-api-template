@@ -16,7 +16,7 @@ export class UserController {
 
   static async findAllUsers(req: Request, res: Response): Promise<IResponse> {
     try {
-      const users = await UserRepo.findAll(); 
+      const users = await UserRepo.findAll();
       return res.success("All users.", UserDto.toArray(users));
     } catch (error: any) {
       return res.error("Users not found!", error.message);
@@ -25,7 +25,7 @@ export class UserController {
 
   static async findOneUser(req: Request, res: Response): Promise<IResponse> {
     try {
-      const user = await UserRepo.findOne(req.params.userId);
+      const user = await UserRepo.findOne(Number(req.params.userId));
       return res.success("User details.", UserDto.toJson(user));
     } catch (error: any) {
       return res.error("User not found!", error.message);
@@ -35,7 +35,7 @@ export class UserController {
   static async updateUser(req: Request, res: Response): Promise<IResponse> {
     try {
       const data = UserDto.fromJson(req.body);
-      const user = await UserRepo.update(req.params.userId, data);
+      const user = await UserRepo.update(Number(req.params.userId), data);
       return res.success("User updated.", UserDto.toJson(user));
     } catch (error: any) {
       return res.error("User not updated!", error.message);
@@ -44,7 +44,7 @@ export class UserController {
 
   static async deleteUser(req: Request, res: Response): Promise<IResponse> {
     try {
-      const user = await UserRepo.delete(req.params.userId);
+      const user = await UserRepo.delete(Number(req.params.userId));
       return res.success("User deleted.", UserDto.toJson(user));
     } catch (error: any) {
       return res.error("User not deleted!", error.message);
